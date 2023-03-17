@@ -1,17 +1,13 @@
 import Head from 'next/head'
-import Image from 'next/image'
 
 import styles from '@/pages/index.module.css'
 import { useState } from 'react';
 
 export default function Home() {
 
-  const [someValue, setSomeValue] = useState(0);
+  const [number1, setNumber1] = useState(0);
+  const [number2, setNumber2] = useState(0);
 
-  setTimeout( () => {
-    console.log('On est la');
-    setSomeValue(parseInt(Math.random()*100));
-  }, 5000);
 
   return (
     <div className={styles.container}>
@@ -21,23 +17,11 @@ export default function Home() {
       </Head>
 
       <main>
-<div className={styles.title} data-testid="someValue">
-  someValue: {someValue}
-</div>
-      </main>
+        <input type="number" className={styles.input} data-testid={number1} value={number1} onChange={(e) => setNumber1(e.target.value)} />
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+        <input type="number" className={styles.input} data-testid={number2} value={number2} onChange={(e) => setNumber2(e.target.value)} />
+        <button>Calculer</button>
+      </main>
     </div>
   )
 }
