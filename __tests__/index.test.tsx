@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
 import Home from '@/pages/index'
+import { render, screen, fireEvent } from '@testing-library/react'
 
 describe('Home', () => {
   xit('renders a heading', () => {
@@ -51,11 +51,68 @@ describe('Calculator', () => {
     expect(screen.getByTestId("divide")).toBeInTheDocument();
   });
 
-  it('method "add" really adds numbers into result constant', ()=> {
-    render(<Home/>)
+  it('method "add" really adds numbers into result constant', () => {
+    render(<Home />)
     // Check logic Controller
-  } 
-  )
 
+    const number1Input = screen.getByTestId("number1");
+    const number2Input = screen.getByTestId("number2");
+    const resultOutput = screen.getByTestId("result");
+
+    fireEvent.change(number1Input, { target: { value: 123 } });
+    fireEvent.change(number2Input, { target: { value: 543 } });
+    // console.log('number1Input:', number1Input.value)
+    fireEvent.click(screen.getByTestId("add"));
+
+    expect(resultOutput).toHaveTextContent("666");
+  });
+
+  it('method "substract" really adds numbers into result constant', () => {
+    render(<Home />)
+    // Check logic Controller
+
+    const number1Input = screen.getByTestId("number1");
+    const number2Input = screen.getByTestId("number2");
+    const resultOutput = screen.getByTestId("result");
+
+    fireEvent.change(number1Input, { target: { value: 200 } });
+    fireEvent.change(number2Input, { target: { value: 100 } });
+    // console.log('number1Input:', number1Input.value)
+    fireEvent.click(screen.getByTestId("substract"));
+
+    expect(resultOutput).toHaveTextContent("100");
+  });
+
+  it('method "multiply" really adds numbers into result constant', () => {
+    render(<Home />)
+    // Check logic Controller
+
+    const number1Input = screen.getByTestId("number1");
+    const number2Input = screen.getByTestId("number2");
+    const resultOutput = screen.getByTestId("result");
+
+    fireEvent.change(number1Input, { target: { value: 200 } });
+    fireEvent.change(number2Input, { target: { value: 2 } });
+    // console.log('number1Input:', number1Input.value)
+    fireEvent.click(screen.getByTestId("multiply"));
+
+    expect(resultOutput).toHaveTextContent("400");
+  });
+
+  it('method "divide" really adds numbers into result constant', () => {
+    render(<Home />)
+    // Check logic Controller
+
+    const number1Input = screen.getByTestId("number1");
+    const number2Input = screen.getByTestId("number2");
+    const resultOutput = screen.getByTestId("result");
+
+    fireEvent.change(number1Input, { target: { value: 200 } });
+    fireEvent.change(number2Input, { target: { value: 2 } });
+    // console.log('number1Input:', number1Input.value)
+    fireEvent.click(screen.getByTestId("divide"));
+
+    expect(resultOutput).toHaveTextContent("100");
+  });
 
 });
