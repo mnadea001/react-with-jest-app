@@ -10,6 +10,15 @@ export default function Home() {
 const add = () => {
   setResult(parseInt(number1) + parseInt(number2))
 };
+const substract = () => {
+  setResult(parseInt(number1) - parseInt(number2))
+};
+const multiply = () => {
+  setResult(parseInt(number1) * parseInt(number2))
+};
+const divide = () => {
+  setResult(parseInt(number1) / parseInt(number2))
+};
 const [result, setResult] = useState(0);
 
   return (
@@ -25,6 +34,9 @@ const [result, setResult] = useState(0);
 
         <input type="number" className={styles.input} data-testid={number2} value={number2} onChange={(e) => setNumber2(e.target.value)} />
         <button onClick={add} className={styles.button} data-testid="add">ADD</button>
+        <button onClick={substract} className={styles.button} data-testid="substract">SUBSTRACT</button>
+        <button onClick={multiply} className={styles.button} data-testid="multiply">MULTIPLY</button>
+        <button onClick={divide} className={styles.button} data-testid="divide">DIVIDE</button>
       </main>
     </div>
   )
